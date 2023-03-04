@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>React点击事件this绑定的4种方式及传参 | S_橘络</title><meta name="author" content="S_橘络"><meta name="copyright" content="S_橘络"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在事件中使用箭头函数(官网推荐使用)​&#96;&#96;&#96;javascript import React from ‘react’class LikesButton extends React.Component{    constructor(props){        super(props)    }    increaseClick &#x3D; (e) &#x3D;&gt;{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React点击事件this绑定的4种方式及传参">
+<meta property="og:url" content="https://jiangjiangisno1.github.io/2023/03/01/react005/index.html">
+<meta property="og:site_name" content="S_橘络">
+<meta property="og:description" content="在事件中使用箭头函数(官网推荐使用)​&#96;&#96;&#96;javascript import React from ‘react’class LikesButton extends React.Component{    constructor(props){        super(props)    }    increaseClick &#x3D; (e) &#x3D;&gt;{">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg">
+<meta property="article:published_time" content="2023-03-01T13:51:52.391Z">
+<meta property="article:modified_time" content="2023-03-04T05:41:49.281Z">
+<meta property="article:author" content="S_橘络">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="tips">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg"><link rel="shortcut icon" href="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/favicon.jpg"><link rel="canonical" href="https://jiangjiangisno1.github.io/2023/03/01/react005/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'React点击事件this绑定的4种方式及传参',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-04 13:41:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">S_橘络</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">React点击事件this绑定的4种方式及传参</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-01T13:51:52.391Z" title="发表于 2023-03-01 21:51:52">2023-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-04T05:41:49.281Z" title="更新于 2023-03-04 13:41:49">2023-03-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/react/">react</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/react/tips/">tips</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">354</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="React点击事件this绑定的4种方式及传参"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="在事件中使用箭头函数-官网推荐使用"><a href="#在事件中使用箭头函数-官网推荐使用" class="headerlink" title="在事件中使用箭头函数(官网推荐使用)"></a>在事件中使用箭头函数(官网推荐使用)</h4><p>​&#96;&#96;&#96;javascript</p>
+<p>import React from ‘react’<br>class LikesButton extends React.Component{<br>    constructor(props){<br>        super(props)<br>    }<br>    increaseClick &#x3D; (e) &#x3D;&gt;{<br>      &#x2F;&#x2F; this:这个组件<br>      console.log(this)<br>      &#x2F;&#x2F; e:被点击目标的合成事件<br>      console.log(e)<br>    }<br>    render(){<br>        return(<br>        &#x2F;&#x2F; 在这里不能传参<br>          <div onClick={this.increaseClick}>点击事件</div><br>        )<br>    }<br>}<br>export default LikesButton</p>
+<p>​&#96;&#96;&#96;</p>
+<h4 id="在constructor构造器进行bind绑定-官网推荐使用"><a href="#在constructor构造器进行bind绑定-官网推荐使用" class="headerlink" title="在constructor构造器进行bind绑定(官网推荐使用)"></a>在constructor构造器进行bind绑定(官网推荐使用)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LikesButton</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span>&#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>)&#123;</span><br><span class="line">        <span class="variable language_">super</span>(props)</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">increaseClick</span> = <span class="variable language_">this</span>.<span class="property">increaseClick</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">increaseClick</span>(<span class="params">e</span>)&#123;</span><br><span class="line">        <span class="comment">// 这个组件</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>)</span><br><span class="line">        <span class="comment">// 合成事件</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">         <span class="comment">// 这里不能传参</span></span><br><span class="line">          <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;this.increaseClick&#125;</span>&gt;</span>点击事件<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">LikesButton</span></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+<h4 id="在render中进行bind绑定"><a href="#在render中进行bind绑定" class="headerlink" title="在render中进行bind绑定"></a>在render中进行bind绑定</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LikesButton</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span>&#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>)&#123;</span><br><span class="line">        <span class="variable language_">super</span>(props)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">increaseClick</span>(<span class="params">value,e</span>)&#123;</span><br><span class="line">       <span class="comment">// 这个组件</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>)</span><br><span class="line">       <span class="comment">// 传的参数</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">lig</span>(value)</span><br><span class="line">       <span class="comment">// 合成事件</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">        <span class="comment">// 可以传参</span></span><br><span class="line">          <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;this.increaseClick.bind(this,11)&#125;</span>&gt;</span>点击事件<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">LikesButton</span></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+<h4 id="在render中使用箭头函数"><a href="#在render中使用箭头函数" class="headerlink" title="在render中使用箭头函数"></a>在render中使用箭头函数</h4><pre><code class="javascript">
+​
+import React from &#39;react&#39;
+class LikesButton extends React.Component&#123;
+    constructor(props)&#123;
+        super(props)
+    &#125;
+    increaseClick(e, value)&#123;
+        // 这个组件
+        console.log(this)
+        // 合成事件
+        console.log(e)
+        // 你传过来的参数
+        console.log(value)
+    &#125;
+    render()&#123;
+        return(
+        //  这里可以传参数，比如说你删除的时候传id
+          &lt;div onClick=&#123;(e) =&gt; &#123;this.increaseClick(e, 11)&#125;&#125;&gt;点击事件&lt;/div&gt;
+        )
+    &#125;
+&#125;
+export default LikesButton
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://jiangjiangisno1.github.io">S_橘络</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jiangjiangisno1.github.io/2023/03/01/react005/">https://jiangjiangisno1.github.io/2023/03/01/react005/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jiangjiangisno1.github.io" target="_blank">S_橘络</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/react/">react</a><a class="post-meta__tags" href="/tags/tips/">tips</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/03/md/"><img class="prev-cover" src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/a68314308cc0cd101bfc44abb176dd10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">md语法</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/28/mobx/"><img class="next-cover" src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/12a7fdc6efe84bbfa24f18c041ecc781.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">mobx</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/27/react003/" title="react18-003"><img class="cover" src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="title">react18-003</div></div></a></div><div><a href="/2023/02/27/react002/" title="react18-002"><img class="cover" src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="title">react18-002</div></div></a></div><div><a href="/2023/02/27/react001/" title="react18-001"><img class="cover" src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="title">react18-001</div></div></a></div><div><a href="/2023/02/27/react004/" title="react小demo"><img class="cover" src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="title">react小demo</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">S_橘络</div><div class="author-info__description">高山有云，低谷有雾</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jiangjiangisno1"><i class="fab fa-github"></i><span>关注我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是S_橘络的个人博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E4%BA%8B%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0-%E5%AE%98%E7%BD%91%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">在事件中使用箭头函数(官网推荐使用)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8constructor%E6%9E%84%E9%80%A0%E5%99%A8%E8%BF%9B%E8%A1%8Cbind%E7%BB%91%E5%AE%9A-%E5%AE%98%E7%BD%91%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">在constructor构造器进行bind绑定(官网推荐使用)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8render%E4%B8%AD%E8%BF%9B%E8%A1%8Cbind%E7%BB%91%E5%AE%9A"><span class="toc-number">3.</span> <span class="toc-text">在render中进行bind绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8render%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">在render中使用箭头函数</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/03/md/" title="md语法"><img src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/a68314308cc0cd101bfc44abb176dd10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="md语法"/></a><div class="content"><a class="title" href="/2023/03/03/md/" title="md语法">md语法</a><time datetime="2023-03-03T12:29:22.668Z" title="发表于 2023-03-03 20:29:22">2023-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/01/react005/" title="React点击事件this绑定的4种方式及传参"><img src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React点击事件this绑定的4种方式及传参"/></a><div class="content"><a class="title" href="/2023/03/01/react005/" title="React点击事件this绑定的4种方式及传参">React点击事件this绑定的4种方式及传参</a><time datetime="2023-03-01T13:51:52.391Z" title="发表于 2023-03-01 21:51:52">2023-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/28/mobx/" title="mobx"><img src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/12a7fdc6efe84bbfa24f18c041ecc781.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mobx"/></a><div class="content"><a class="title" href="/2023/02/28/mobx/" title="mobx">mobx</a><time datetime="2023-02-28T05:30:05.235Z" title="发表于 2023-02-28 13:30:05">2023-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/hexo001/" title="hexo技巧"><img src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo技巧"/></a><div class="content"><a class="title" href="/2023/02/27/hexo001/" title="hexo技巧">hexo技巧</a><time datetime="2023-02-27T05:41:45.351Z" title="发表于 2023-02-27 13:41:45">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/vscode001/" title="vscode技巧"><img src="https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/vscode.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vscode技巧"/></a><div class="content"><a class="title" href="/2023/02/27/vscode001/" title="vscode技巧">vscode技巧</a><time datetime="2023-02-27T03:14:05.355Z" title="发表于 2023-02-27 11:14:05">2023-02-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://raw.githubusercontent.com/jiangjiangisno1/blogImg/main/004.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By S_橘络</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
